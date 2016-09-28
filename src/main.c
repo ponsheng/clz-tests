@@ -15,7 +15,8 @@ int main()
 	int is_check = 0;
 	//FILE * output= fopen ( "output.txt", "w");
 	int count = 0;
-	for(num=0 ; num < pow(2,32); num++)
+	num = 0;
+	while(1)
 	{
 	    n = clz(num);
 		is_check = check(num,n);
@@ -24,6 +25,10 @@ int main()
 		if(!is_check)
 			printf("incorrect %u  %u\n",num,n);
 		//fprintf(output,  "%u %u %u\n",num,n,is_check );
+		if(num == 0x0000FFFF)
+			break;
+		else
+			num++;
 	}
 	//fclose(output); 
 	return 0;
