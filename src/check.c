@@ -2,6 +2,7 @@
 #include<math.h>
 #include <string.h>
 
+#define MAX_NUM 0x00FFFFFF
 
 int check(uint32_t num,int n)
 {
@@ -25,7 +26,7 @@ int main()
 		if(!is_check)
 			printf("incorrect %u  %u\n",num,n);
 		//fprintf(output,  "%u %u %u\n",num,n,is_check );
-		if(num == 0x00FFFFFF)
+		if(num == MAX_NUM)
 			break;
 		else
 			num++;

@@ -9,6 +9,7 @@ CHECK = $(addprefix src/,check.c)
 
 EXE = $(addprefix bin/, $(EXE_NAME))
 CHECK_EXE = $(addprefix bin/check_, $(EXE_NAME))
+OUTPUT = $(addsuffix .txt , $(addprefix output/output_, $(EXE_NAME)))
 
 all:  bin $(EXE) $(CHECK_EXE)
 
@@ -24,10 +25,26 @@ bin/check_%: $(CHECK) src/%.c
 	$(CC) $^ $(CFLAGS) -o $@
 
 run:  bin output $(EXE)
-	bin/iteration    
+	bin/iteration
+	bin/binary_search
+	bin/byte_shift
+	bin/harley
+	bin/recursive
 
 check: bin $(CHECK_EXE)
 	bin/check_recursive
+	bin/check_iteration
+	bin/check_binary_search
+	bin/check_byte_shift
+	bin/check_harley
+
+output/output_%.txt: output bin/% $(MAIN)
+	echo $@	
+	bin/$*
+
+plot: $(OUTPUT)
+	gnuplot script/result.gp
+	eog output/result.png
 
 .PHONY: clean
 
