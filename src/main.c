@@ -22,29 +22,28 @@ static double diff_in_second(struct timespec t1, struct timespec t2)
 int main()
 {
     uint32_t num = 0;
-	struct timespec start, end;
+    struct timespec start, end;
     double cpu_time;
 
     char output_txt[] = "output/output_" ALG ".txt";
-	FILE * output= fopen (output_txt, "w");
-	int count = 0;
-	num = 0;
-	while(1)
-	{	    
-		clock_gettime(CLOCK_REALTIME, &start);
-		clz(num);
-		clock_gettime(CLOCK_REALTIME, &end);
-		cpu_time = diff_in_second(start, end);
+    FILE * output= fopen (output_txt, "w");
+    int count = 0;
+    num = 0;
+    while(1) {
+        clock_gettime(CLOCK_REALTIME, &start);
+        clz(num);
+        clock_gettime(CLOCK_REALTIME, &end);
+        cpu_time = diff_in_second(start, end);
 
-		if((num & (num - 1)) == 0)
-			printf("power of 2: %u\n",count++);
-		//cpu_time*10^6
-		fprintf(output,  "%u %lf\n",num,cpu_time*1000000 );
-		if(num == LAST_NUM)
-			break;
-		else
-			num++;
-	}
-	fclose(output); 
-	return 0;
+        if((num & (num - 1)) == 0)
+            printf("power of 2: %u\n",count++);
+        //cpu_time*10^6
+        fprintf(output,  "%u %lf\n",num,cpu_time*1000000 );
+        if(num == LAST_NUM)
+            break;
+        else
+            num++;
+    }
+    fclose(output);
+    return 0;
 }
