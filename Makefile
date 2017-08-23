@@ -3,14 +3,6 @@ CC ?= gcc
 CFLAGS = -O0 -Wall -I./inc 
 EXE_NAME = iteration binary_search byte_shift harley recursive
 SRC_DIR = src/
-
-MAIN = $(addprefix src/,main.c)
-CHECK = $(addprefix src/,check.c)
-
-EXE = $(addprefix bin/, $(EXE_NAME))
-CHECK_EXE = $(addprefix bin/check_, $(EXE_NAME))
-OUTPUT = $(addsuffix .txt , $(addprefix output/output_, $(EXE_NAME)))
-
 all:  bin $(EXE) $(CHECK_EXE)
 
 bin:
